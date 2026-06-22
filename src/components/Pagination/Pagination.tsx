@@ -28,7 +28,10 @@ export const Pagination = ({
             aria-disabled={currentPage === 1}
             onClick={e => {
               e.preventDefault();
-              onPageChange(currentPage - 1);
+
+              if (currentPage > 1) {
+                onPageChange(currentPage - 1);
+              }
             }}
           >
             «
@@ -45,7 +48,10 @@ export const Pagination = ({
               href={`#${page}`}
               onClick={e => {
                 e.preventDefault();
-                onPageChange(page);
+
+                if (page !== currentPage) {
+                  onPageChange(page);
+                }
               }}
             >
               {page}
@@ -65,7 +71,10 @@ export const Pagination = ({
             aria-disabled={currentPage === pages.length}
             onClick={e => {
               e.preventDefault();
-              onPageChange(currentPage + 1);
+
+              if (currentPage < pages.length) {
+                onPageChange(currentPage + 1);
+              }
             }}
           >
             »

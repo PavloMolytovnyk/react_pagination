@@ -7,14 +7,14 @@ import { Pagination } from './components/Pagination';
 const items = getNumbers(1, 42).map(n => `Item ${n}`);
 
 interface RenderingPages {
-  item: string[];
+  partOfPage: string[];
   before: number;
   to: number;
 }
 
 export const App: React.FC = () => {
   const [count, setCount] = useState(1);
-  const [pages, setPages] = useState(3);
+  const [pages, setPages] = useState(5);
 
   const minPage = count * pages - (pages - 1);
   const maxPage = count * pages > items.length ? items.length : count * pages;
@@ -51,6 +51,7 @@ export const App: React.FC = () => {
             id="perPageSelector"
             className="form-control"
             onChange={handlePerPageChange}
+            value={pages}
           >
             <option value="3">3</option>
             <option value="5">5</option>
@@ -75,7 +76,7 @@ export const App: React.FC = () => {
 
       <ul>
         {renderPerPage({
-          item: items,
+          partOfPage: items,
           before: minPage - 1,
           to: maxPage,
         })}
